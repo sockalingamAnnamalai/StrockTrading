@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+        <title>Welcome</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        <title>registration</title>
+        <h:outputStylesheet  name="css/bootstrap.min.css"></h:outputStylesheet>
+<h:outputStylesheet  name="css/style.css"></h:outputStylesheet>
+       
+</h:head>
+    <h:body>
+        <div class="container">
+  <div class="jumbotron">
+    
+        <c:choose>
+        <c:when test="#{username==null}" >
+            <h:form>
+                <h:commandButton action="signin" value="Return to Signin"/>                
+            </h:form>
+       
+            </c:when>
+        <c:otherwise>
+            <div >
+                <h:outputText styleClass="h1"  value="#{username}"/>
+                
+            <h:outputText value="#{role}"/>
+        </div>
+            
+        <div style="position: absolute; top:0; right: 0;">
+            <h:form>
+                
+                <h:commandButton id="logoutButton" action="#{User.invalidateSession}" class="btn btn-primary" style="margin-top: 10px;margin-left: 10px;" value="Log Out">
+    <span class="glyphicon glyphicon-log-out"></span> 
+                </h:commandButton>
+            </h:form>
+                 
+  </div>
+        
+           
+        
+             </c:otherwise>
+        </c:choose>
+  </div>
+        </div>
+        <h:form>
+        <h:commandButton value="approvemanagerlist" action="#{User.approvemanagerlist}" styleClass="btn btn-success btn-login-submit" />
+        </h:form>
+        <div>
+            
+       
+            <table border="1" align="center">
+           <tr>
+		    			<th >firstname</th>
+		    			<th >lastname</th>
+		    			<th >email</th>
+		    			<th >username</th>
+                                        <th >password</th>
+                                        <th >role</th>
+                                        <th> select</th>
+           </tr>
+            
+             <ui:repeat value="#{sessionScope.alist}" var ="a">
+	    			  <tr>
+		    			<td binding="a.firstname"> #{a.firstname} </td>
+		    			<td  binding="a.lastname"> #{a.lastname} </td>
+		    			<td binding="a.email">#{a.email}</td>
+		    			<td binding="a.username">#{a.username}</td>
+                                        <td binding="a.password">#{a.password}</td>
+                                        <td binding="a.role">#{a.role}</td>
+                                        <h:form>
+                                        <td> <h:commandButton value="approve"  styleClass="btn btn-success btn-login-submit" action="#{User.registermanager(a.firstname,a.lastname,a.email,a.username,a.password,a.role)}" /></td>
+                                            
+                                        <td> <h:commandButton value="decline"  styleClass="btn btn-success btn-login-submit" action="#{User.declinemanager(a.username)}" /></td>
+                                            </h:form>
+                                  </tr>
+	    		</ui:repeat>
+            </table>
+        </div>
+        
+        
+    </h:body>
+</html>
+

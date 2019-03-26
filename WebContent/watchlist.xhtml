@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+        <title>Welcome</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        <title>registration</title>
+        <h:outputStylesheet  name="css/bootstrap.min.css"></h:outputStylesheet>
+<h:outputStylesheet  name="css/style.css"></h:outputStylesheet>
+       
+</h:head>
+    <h:body>
+        <div class="container">
+  <div class="jumbotron">
+    
+        <c:choose>
+        <c:when test="#{username==null}" >
+            <h:form>
+                <h:commandButton action="signin" value="Return to Signin"/>                
+            </h:form>
+       
+            </c:when>
+        <c:otherwise>
+            <div >
+                <h:outputText styleClass="h1"  value="#{username}"/>
+                
+            <h:outputText value="#{role}"/>
+        </div>
+            
+        <div style="position: absolute; top:0; right: 0;">
+            <h:form>
+                
+                <h:commandButton id="logoutButton" action="#{User.invalidateSession}" class="btn btn-primary" style="margin-top: 10px;margin-left: 10px;" value="Log Out">
+    <span class="glyphicon glyphicon-log-out"></span> 
+                </h:commandButton>
+            </h:form>
+                 
+  </div>
+        
+           
+        
+             </c:otherwise>
+        </c:choose>
+  </div>
+        </div>
+        <div class="container">
+			<div class="row">
+				<div class="user-profile">
+					<ul class="nav nav-tabs list-inline">
+						<li class="active">
+							<a href="faces/user.xhtml"  aria-expanded="true">PROFILE</a>
+						</li>
+						<li class="">
+							<a href="faces/selectstock.xhtml"  aria-expanded="false">select stock</a>
+						</li>
+						<li class="">
+							<a href="faces/purchasestock.xhtml" aria-expanded="false">Purchase stock</a>
+						</li>
+                                            <li class="">
+							<a href="faces/watchlist.xhtml" aria-expanded="true">watchlist</a>
+						</li>
+						<li class="">
+							<a href="faces/sellstock.xhtml"  aria-expanded="false">sell stock</a>
+						</li>
+						<li class="">
+							<a href="faces/signin.xhtml" aria-expanded="true">view price</a>
+						</li>
+						
+					<li class="">
+							<a href="faces/selectmanager.xhtml" aria-expanded="true">Select manager</a>
+						</li>
+                                            <li class="">
+							<a href="faces/register.xhtml"  aria-expanded="true">Account balance</a>
+						</li>
+                                            </ul>
+				</div>
+  </div>
+        </div>
+        <h:form>
+        <h:commandButton value="showwatchlist" action="#{User.displaywatchlist}" styleClass="btn btn-success btn-login-submit" />
+        </h:form>
+        <div>
+            
+       
+            <table border="1" align="center">
+           <tr>
+		    			<th >symbol</th>
+		    			<th >price</th>
+		    			
+           </tr>
+            
+             <ui:repeat value="#{sessionScope.dlist}" var ="d">
+	    			  <tr>
+                                      <td binding="d.symbol" > #{d.symbol} </td>
+                                        <td > #{d.price} </td>
+		    			<h:form>
+                                        <td> <h:commandButton value="view recent prices" action="#{sellstock.timeseries(d.symbol)}" styleClass="btn btn-success btn-login-submit"  /></td>
+                                            </h:form>
+                                  </tr>
+	    		</ui:repeat>
+            </table>
+        </div>
+        
+        
+    </h:body>
+</html>
+

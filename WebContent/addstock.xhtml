@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <title>Purchase Stock</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"></link>
+
+        <!-- Custom styles for this template -->
+        <link rel="stylesheet" href="css/style.css" ></link>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+        <script type="text/javascript" src="scripts/jquery-3.2.1.min.js"></script>
+    </h:head>
+    <h:body>
+        <div class="container">
+			<div class="row">
+				<div class="user-profile">
+					<ul class="nav nav-tabs list-inline">
+						<li class="active">
+							<a href="faces/user.xhtml"  aria-expanded="true">PROFILE</a>
+						</li>
+						<li class="">
+							<a href="faces/selectstock.xhtml"  aria-expanded="false">select stock</a>
+						</li>
+						<li class="">
+							<a href="faces/purchasestock.xhtml" aria-expanded="false">Purchase stock</a>
+						</li>
+                                            <li class="">
+							<a href="faces/watchlist.xhtml" aria-expanded="true">watchlist</a>
+						</li>
+						<li class="">
+							<a href="faces/sell.xhtml"  aria-expanded="false">sell stock</a>
+						</li>
+						<li class="">
+							<a href="faces/purchased.xhtml" aria-expanded="true">purchasedstock</a>
+						</li>
+						
+					<li class="">
+							<a href="faces/selectmanager.xhtml" aria-expanded="true">Select manager</a>
+						</li>
+                                            <li class="">
+							<a href="faces/register.xhtml"  aria-expanded="true">Account balance</a>
+						</li>
+                                            </ul>
+				</div>
+  </div>
+        </div>
+                    <div class="col-sm-6">
+                        <h:form id="purchase">
+                            <h:messages style="color: red;"/>
+                            Stock Name: <h:inputText binding="#{purchaseSymbol}" id="symbol" styleClass="form-control purchaseSymbol" value="#{stockApiBean1.purchaseSymbol}" required="true"/><br />
+                            Price: <h:inputText binding="#{purchasePrice}" id="price" styleClass="form-control purchasePrice" value="#{stockApiBean1.purchasePrice}" required="true"/><br />
+                            <h:commandButton styleClass="btn btn-success btn-login-submit" value="watchlist" action="#{stockApiBean1.createDbwatchlist(purchaseSymbol,purchasePrice)}"/>
+                        </h:form>
+                    </div>
+ <table border="1" align="center">
+    <tr>
+        <th>stock</th>  
+        <th> price</th>
+    </tr> 
+    <tr> <td> #{stockApiBean1.purchaseSymbol}</td>
+        <td> #{stockApiBean1.purchasePrice}  </td>    </tr>
+</table>
+       
+    </h:body>
+</html>

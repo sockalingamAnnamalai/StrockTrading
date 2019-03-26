@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<h:head>
+        <title>Tradeday-Welcome</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        <title>registration</title>
+        <h:outputStylesheet  name="css/bootstrap.min.css"></h:outputStylesheet>
+<h:outputStylesheet  name="css/style.css"></h:outputStylesheet>
+       
+</h:head>
+    <h:body>
+        <div class="container">
+  <!--  <div class="jumbotron">-->
+    
+        <c:choose>
+        <c:when test="#{username==null}" >
+            <h:form>
+                <h:commandButton action="signin" value="Return to Signin"/>                
+            </h:form>
+       
+            </c:when>
+        <c:otherwise>
+            <div>
+                <h:outputText styleClass="h1"  value="Welcome #{username}"/>
+        </div>
+            
+        <div style="position: absolute; top:0; right: 0;">
+            <h:form>
+                
+                <h:commandButton id="logoutButton" action="#{User.invalidateSession}" class="btn btn-success btn-login-submit" style="margin-top: 1px;margin-left: 10px;" value="Log Out">
+    <span class="glyphicon glyphicon-log-out"></span> 
+                </h:commandButton>
+            </h:form>
+              </div>
+            </c:otherwise>
+        </c:choose>
+        </div>   
+  
+            
+     
+		<div class="container">
+			<div class="row">
+				<div class="user-profile">
+			
+					<ul class="nav nav-pills nav-stacked">
+						<li class="active">
+							<a href="faces/user.xhtml"  aria-expanded="true">View Profile</a>
+						</li>
+						<li class="">
+							<a href="faces/selectstock.xhtml"  aria-expanded="false">Watchlist select</a>
+						</li>
+						<li class="">
+							<a href="faces/purchasestock.xhtml" aria-expanded="false">Buy stock</a>
+						</li>
+                                            <li class="">
+							<a href="faces/watchlist.xhtml" aria-expanded="true">watchlist</a>
+						</li>
+						<li class="">
+							<a href="faces/sellstock.xhtml"  aria-expanded="false">sell stock</a>
+						</li>
+						<!--  <li class="">
+							<a href="faces/signin.xhtml" aria-expanded="true">view price</a>
+						</li>-->
+						
+					<li class="">
+							<a href="faces/selectmanager.xhtml" aria-expanded="true">View managers</a>
+						</li>
+                                              <li class="">
+							  <a href="faces/accountbal.xhtml"  aria-expanded="true">Account balance</a>
+						</li>
+                                            <li class="">
+							<a href="faces/requestpurchase.xhtml"  aria-expanded="true">Give Request</a>
+						</li>
+                                            </ul>
+                                           
+				</div>
+				
+  </div>
+        </div>
+ 	<!--  <div class="col-sm-8" align ="center" >
+ 	
+                        <h:form id="login">
+                            
+                            First Name: <h:outputText value="#{firstname}"/><br /> 
+                            Last Name: <h:outputText value="#{lastname}"/><br />
+                            Email :<h:outputText value="#{email}"/><br />
+                            Role:<h:outputText value="#{role}"/><br />
+                           <a class="btn btn-success btn-login-submit" align="center" href="faces/updatepage.xhtml" role="button">update info</a>
+                          
+                        </h:form>
+                    </div>-->
+                    <table border="3" width="70%" align ="center">
+                    
+
+  <tr>
+
+    <td width="100%">First Name</td>
+
+    <td width="100%"><h:outputText value="#{firstname}"/></td>
+
+  </tr>
+
+  <tr>
+
+    <td>Last Name</td>
+
+    <td><h:outputText value="#{lastname}"/></td>
+
+  </tr>
+
+  <tr>
+
+    <td>Email</td>
+
+    <td><h:outputText value="#{email}"/></td>
+
+  </tr>
+   <tr>
+
+    <td>Role</td>
+
+    <td><h:outputText value="#{role}"/></td>
+
+  </tr>
+  
+
+</table>
+<div align="center">
+		<a class="btn btn-success btn-login-submit" align="center" href="faces/updatepage.xhtml" role="button">update info</a>
+   </div>
+    </h:body>
+</html>
+
